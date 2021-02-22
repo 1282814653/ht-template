@@ -4,6 +4,12 @@ import Layout from '@/views/Layout/index'
 Vue.use(VueRouter)
 
 const routes = [
+    // 404 页面
+    {
+        path: "/error",
+        name: "error",
+        component: () => import(/* webpackChunkName: "error" */ '@/views/Error/index'),
+    },
     // 
     {
         path: '/',
@@ -32,7 +38,11 @@ const routes = [
             }
         ]
     },
-    // { path: "*", redirect: "/404", hidden: true },
+    // 页面指向 404 页面
+    {
+        path: "*",
+        redirect: "/error",
+    }
 ]
 
 const router = new VueRouter({
