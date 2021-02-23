@@ -1,6 +1,5 @@
 <template>
     <div class="layout">
-        <!-- <h1>layout</h1> -->
         <router-view></router-view>
     </div>
 </template>
@@ -32,4 +31,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.layout {
+    width: 100%;
+    height: 100%;
+}
 </style>

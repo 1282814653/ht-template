@@ -1,0 +1,9 @@
+// 样式
+
+@mixin flex-style($wrap, $acen, $jcen, $row) {
+    display: flex;
+    flex-wrap: $wrap;
+    align-items: $acen;
+    justify-content: $jcen;
+    flex-direction: $row;
+}
