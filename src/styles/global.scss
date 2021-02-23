@@ -5,7 +5,7 @@
 
 
 
-
+// 垂直居中
 .rel {
     position: relative;
 }
@@ -19,4 +19,29 @@
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
+}
+
+// 圆角
+.borr10 {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.borr50 {
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}
+
+.bor1 {
+    border: 2px dashed #666;
+
+    &:hover {
+        border: 2px dashed orange;
+    }
 }
