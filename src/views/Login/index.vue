@@ -10,7 +10,6 @@
                     <el-form-item label="密码" prop="password">
                         <el-input type="password" v-model="userInfo.password" autocomplete="off"></el-input>
                     </el-form-item>
-
                 </el-form>
             </div>
             <div class="t-a-c">
@@ -46,10 +45,15 @@ export default {
     },
     methods: {
         userLogin() {
-            if (this.userInfo.username === "123456" && this.userInfo.password === "123456") {
+            let { username, password } = this.userInfo
+            if (username === "123456" && password === "123456") {
                 this.$router.push("/index")
-                localStorage.setItem("userLoginInfo", JSON.stringify(this.userInfo.username))
+                // localStorage.setItem("userLoginInfo", JSON.stringify(username))
                 this.userInfo = {}
+                this.$message({
+                    message: '登陆成功',
+                    type: 'success'
+                });
             } else {
                 this.$message({
                     message: '填写错误，请重新填写信息。',

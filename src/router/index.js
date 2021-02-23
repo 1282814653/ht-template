@@ -30,12 +30,35 @@ const routes = [
         component: Layout,
         redirect: "/index",
         children: [
+            // 主页
             {
                 path: "index",
                 name: "Index",
                 meta: { title: "index主页" },
                 component: () => import(/* webpackChunkName: "login" */ '@/views/Home/index'),
-            }
+            },
+            // 新闻页面
+            {
+                path: "news",
+                name: "News",
+                meta: { title: "新闻页" },
+                component: () => import(/* webpackChunkName: "news" */ '@/views/News/index'),
+            },
+            // 图片页面
+            {
+                path: "images",
+                name: "Images",
+                meta: { title: "图片页" },
+                component: () => import(/* webpackChunkName: "images" */ '@/views/Images/index'),
+            },
+            // 轮播页面
+            {
+                path: "swiper",
+                name: "Swiper",
+                meta: { title: "轮播页" },
+                component: () => import(/* webpackChunkName: "swiper" */ '@/views/Swipers/index'),
+            },
+
         ]
     },
     // 页面指向 404 页面

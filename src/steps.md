@@ -23,3 +23,10 @@
     import 'normalize.css/normalize.css'
 
 ```
+
+> 安装 axios 
+
+```
+    <!-- 安装 -->
+    npm install axios
+```
