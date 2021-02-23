@@ -1,78 +1,103 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Layout from '@/views/Layout/index'
+
+
 Vue.use(VueRouter)
 
-const routes = [
-    // 404 页面
-    {
-        path: "/error",
-        name: "error",
-        component: () => import(/* webpackChunkName: "error" */ '@/views/Error/index'),
-    },
-    // 
-    {
-        path: '/',
-        redirect: "/index",
-    },
+import Layout from "@/layout"
+
+
+export const staticRoutes = [
     // 登录页面
     {
         path: '/login',
         name: 'login',
         meta: { title: "登录" },
-        component: () => import(/* webpackChunkName: "login" */ '@/views/Login/index')
+        component: () => import(/* webpackChunkName: "login" */ '@/views/Login/index'),
+        hidden: true
     },
-    // 主页 
+    // 404 页面
     {
-        path: "/",
-        // name: "Layout",
-        // component: () => import(/* webpackChunkName: "layout" */ '@/views/Layout/index'),
+        path: "/error",
+        name: "error",
+        component: () => import(/* webpackChunkName: "error" */ '@/views/Error/index'),
+        hidden: true
+    },
+    // 主页
+    {
+        path: '/',
         component: Layout,
         redirect: "/index",
         children: [
-            // 主页
             {
                 path: "index",
                 name: "Index",
-                meta: { title: "index主页" },
-                component: () => import(/* webpackChunkName: "login" */ '@/views/Home/index'),
-            },
-            // 新闻页面
-            {
-                path: "news",
-                name: "News",
-                meta: { title: "新闻页" },
-                component: () => import(/* webpackChunkName: "news" */ '@/views/News/index'),
-            },
-            // 图片页面
+                component: () => import("@/views/Home/index")
+            }
+        ]
+    },
+    // 图片页面
+    {
+        path: '/images',
+        component: Layout,
+        // redirect: "/images",
+        children: [
             {
                 path: "images",
                 name: "Images",
-                meta: { title: "图片页" },
-                component: () => import(/* webpackChunkName: "images" */ '@/views/Images/index'),
-            },
-            // 轮播页面
-            {
-                path: "swiper",
-                name: "Swiper",
-                meta: { title: "轮播页" },
-                component: () => import(/* webpackChunkName: "swiper" */ '@/views/Swipers/index'),
-            },
-
+                component: () => import("@/views/Images/index")
+            }
         ]
     },
+    // 新闻页面
+    {
+        path: '/news',
+        component: Layout,
+        // redirect: "/news",
+        children: [
+            {
+                path: "news",
+                name: "News",
+                component: () => import("@/views/News/index")
+            }
+        ]
+    },
+    // 轮播页面
+    {
+        path: '/swipers',
+        component: Layout,
+        // redirect: "/swipers",
+        children: [
+            {
+                path: "swipers",
+                name: "Swipers",
+                component: () => import("@/views/Swipers/index")
+            }
+        ]
+    },
+
+
     // 页面指向 404 页面
     {
         path: "*",
         redirect: "/error",
+        hidden: true
     }
 ]
 
-const router = new VueRouter({
-    mode: 'history',
+const createRouter = () => new VueRouter({
+    // mode: 'history',
     //   mode:"hash",
-    base: process.env.BASE_URL,
-    routes
+    scrollBehavior: () => ({ y: 0 }),
+    // base: process.env.BASE_URL,
+    routes: staticRoutes
 })
+
+const router = createRouter()
+
+export function resetRouter() {
+    const newRouter = createRouter()
+    router.matcher = newRouter.matcher
+}
 
 export default router
