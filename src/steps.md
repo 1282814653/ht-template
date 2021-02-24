@@ -24,9 +24,16 @@
 
 ```
 
-> 安装 axios 
+> 安装 axios
 
 ```
     <!-- 安装 -->
     npm install axios
+```
+
+> 安装 js-cookie
+
+```
+    <!--  -->
+    npm install js-cookie --save
 ```

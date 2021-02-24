@@ -47,7 +47,7 @@ export default {
         userLogin() {
             let { username, password } = this.userInfo
             if (username === "123456" && password === "123456") {
-                this.$router.push("/index")
+                this.$router.push("/")
                 // localStorage.setItem("userLoginInfo", JSON.stringify(username))
                 this.userInfo = {}
                 this.$message({
