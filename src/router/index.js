@@ -74,7 +74,7 @@ export const staticRoutes = [
                 name: 'Form',
                 component: () => import('@/views/form/index'),
                 meta: {
-                    title: 'Form',
+                    title: '表单',
                     // icon: 'form'
                 }
             }
