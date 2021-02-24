@@ -1,78 +1,166 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Layout from '@/views/Layout/index'
+
+
 Vue.use(VueRouter)
 
-const routes = [
-    // 404 页面
-    {
-        path: "/error",
-        name: "error",
-        component: () => import(/* webpackChunkName: "error" */ '@/views/Error/index'),
-    },
-    // 
-    // {
-    //     path: '/',
-    //     meta: { title: "主页" },
-    //     redirect: "/home",
-    // },
+import Layout from "@/layout"
+
+
+export const staticRoutes = [
     // 登录页面
     {
         path: '/login',
         name: 'login',
         meta: { title: "登录" },
-        component: () => import(/* webpackChunkName: "login" */ '@/views/Login/index')
+        component: () => import(/* webpackChunkName: "login" */ '@/views/login/index'),
+        hidden: true
     },
-    // 主页 
+    {
+        path: '/404',
+        component: () => import("@/views/error/index"),
+        hidden: true
+    },
     {
         path: "/",
-        // name: "home",
         component: Layout,
-        redirect: "/index",
+        redirect: "/dashboard",
+        children: [{
+            path: "dashboard",
+            name: "Dashboard",
+            component: () => import('@/views/dashboard/index'),
+            meta: {
+                title: "首页",
+                // icon: "dashboard"
+            }
+        }]
+    },
+    {
+        path: '/example',
+        component: Layout,
+        redirect: '/example/table',
+        name: 'Example',
+        meta: {
+            title: 'Example',
+            // icon: 'el-icon-s-help'
+        },
         children: [
-            // 主页
             {
-                path: "/index",
-                name: "Index",
-                meta: { title: "主页" },
-                component: () => import(/* webpackChunkName: "login" */ '@/views/Home/index'),
+                path: 'table',
+                name: 'Table',
+                component: () => import('@/views/table/index'),
+                meta: {
+                    title: 'Table',
+                    //  icon: 'table'
+                }
             },
-            // 新闻页面
             {
-                path: "/news",
-                name: "News",
-                meta: { title: "新闻页" },
-                component: () => import(/* webpackChunkName: "news" */ '@/views/News/index'),
-            },
-            // 图片页面
-            {
-                path: "/images",
-                name: "Images",
-                meta: { title: "图片页" },
-                component: () => import(/* webpackChunkName: "images" */ '@/views/Images/index'),
-            },
-            // 轮播页面
-            {
-                path: "/swiper",
-                name: "Swiper",
-                meta: { title: "轮播页" },
-                component: () => import(/* webpackChunkName: "swiper" */ '@/views/Swipers/index'),
-            },
-
+                path: 'tree',
+                name: 'Tree',
+                component: () => import('@/views/tree/index'),
+                meta: {
+                    title: 'Tree',
+                    //  icon: 'tree'
+                }
+            }
         ]
     },
-    // 页面指向 404 页面
     {
-        path: "*",
-        redirect: "/error",
+        path: '/form',
+        component: Layout,
+        children: [
+            {
+                path: 'index',
+                name: 'Form',
+                component: () => import('@/views/form/index'),
+                meta: {
+                    title: 'Form',
+                    // icon: 'form'
+                }
+            }
+        ]
+    },
+
+    {
+        path: '/nested',
+        component: Layout,
+        redirect: '/nested/menu1',
+        name: 'Nested',
+        meta: {
+            title: 'Nested',
+            // icon: 'nested'
+        },
+        children: [
+            {
+                path: 'menu1',
+                component: () => import('@/views/nested/menu1/index'), // Parent router-view
+                name: 'Menu1',
+                meta: { title: 'Menu1' },
+                children: [
+                    {
+                        path: 'menu1-1',
+                        component: () => import('@/views/nested/menu1/menu1-1'),
+                        name: 'Menu1-1',
+                        meta: { title: 'Menu1-1' }
+                    },
+                    {
+                        path: 'menu1-2',
+                        component: () => import('@/views/nested/menu1/menu1-2'),
+                        name: 'Menu1-2',
+                        meta: { title: 'Menu1-2' },
+                        children: [
+                            {
+                                path: 'menu1-2-1',
+                                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+                                name: 'Menu1-2-1',
+                                meta: { title: 'Menu1-2-1' }
+                            },
+                            {
+                                path: 'menu1-2-2',
+                                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+                                name: 'Menu1-2-2',
+                                meta: { title: 'Menu1-2-2' }
+                            }
+                        ]
+                    },
+                    {
+                        path: 'menu1-3',
+                        component: () => import('@/views/nested/menu1/menu1-3'),
+                        name: 'Menu1-3',
+                        meta: { title: 'Menu1-3' }
+                    }
+                ]
+            },
+            {
+                path: 'menu2',
+                component: () => import('@/views/nested/menu2/index'),
+                name: 'Menu2',
+                meta: { title: 'menu2' }
+            }
+        ]
+    },
+
+    {
+        path: '*',
+        redirect: '/404',
+        hidden: true
     }
+
 ]
 
-const router = new VueRouter({
-    mode: 'history',
+const createRouter = () => new VueRouter({
+    // mode: 'history',
     //   mode:"hash",
-    base: process.env.BASE_URL,
-    routes
+    scrollBehavior: () => ({ y: 0 }),
+    // base: process.env.BASE_URL,
+    routes: staticRoutes
 })
+
+const router = createRouter()
+
+export function resetRouter() {
+    const newRouter = createRouter()
+    router.matcher = newRouter.matcher
+}
 
 export default router
