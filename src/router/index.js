@@ -11,10 +11,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "error" */ '@/views/Error/index'),
     },
     // 
-    {
-        path: '/',
-        redirect: "/index",
-    },
+    // {
+    //     path: '/',
+    //     meta: { title: "主页" },
+    //     redirect: "/home",
+    // },
     // 登录页面
     {
         path: '/login',
@@ -25,35 +26,34 @@ const routes = [
     // 主页 
     {
         path: "/",
-        // name: "Layout",
-        // component: () => import(/* webpackChunkName: "layout" */ '@/views/Layout/index'),
+        // name: "home",
         component: Layout,
         redirect: "/index",
         children: [
             // 主页
             {
-                path: "index",
+                path: "/index",
                 name: "Index",
-                meta: { title: "index主页" },
+                meta: { title: "主页" },
                 component: () => import(/* webpackChunkName: "login" */ '@/views/Home/index'),
             },
             // 新闻页面
             {
-                path: "news",
+                path: "/news",
                 name: "News",
                 meta: { title: "新闻页" },
                 component: () => import(/* webpackChunkName: "news" */ '@/views/News/index'),
             },
             // 图片页面
             {
-                path: "images",
+                path: "/images",
                 name: "Images",
                 meta: { title: "图片页" },
                 component: () => import(/* webpackChunkName: "images" */ '@/views/Images/index'),
             },
             // 轮播页面
             {
-                path: "swiper",
+                path: "/swiper",
                 name: "Swiper",
                 meta: { title: "轮播页" },
                 component: () => import(/* webpackChunkName: "swiper" */ '@/views/Swipers/index'),

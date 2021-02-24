@@ -2,11 +2,15 @@
     <div class="home">
         <el-container class="home-main">
             <!-- 左边 信息  -->
-            <el-aside class="main-left">Aside</el-aside>
+            <el-aside class="main-left">
+                Aside</el-aside>
+
             <!-- 右边 信息 -->
             <el-container class="main-right">
                 <!-- 右边 上部信息 -->
-                <el-header class="right-top">Header</el-header>
+                <el-header class="right-top">
+                    <header_page></header_page>
+                </el-header>
                 <!-- 右边 下部信息 -->
                 <el-main class="right-bottom">Main</el-main>
             </el-container>
@@ -15,10 +19,11 @@
 </template>
 
 <script>
+import header_page from './component/header'
 export default {
     name: 'Home',
     components: {
-
+        header_page
     },
     data() {
         return {
