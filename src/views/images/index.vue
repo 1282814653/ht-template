@@ -1,12 +1,13 @@
 <template>
-    <div class="news-type">
-        <h1>新闻类型 </h1>
+    <div class="images">
+
+        <h1>这是 image 页面 </h1>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'NewsType',
+    name: 'Image',
     components: {
 
     },

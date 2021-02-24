@@ -8,7 +8,7 @@ Vue.config.productionTip = false
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
-// 安装 normalize.css
+//  normalize.css
 import 'normalize.css/normalize.css'
 // 全局 样式
 import "@/styles/index.scss"

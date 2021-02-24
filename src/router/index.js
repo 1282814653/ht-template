@@ -21,6 +21,7 @@ export const staticRoutes = [
         component: () => import("@/views/error/index"),
         hidden: true
     },
+    // 首页
     {
         path: "/",
         component: Layout,
@@ -35,6 +36,59 @@ export const staticRoutes = [
             }
         }]
     },
+    // 新闻 模块
+    {
+        path: "/",
+        component: Layout,
+        redirect: "/newstype",
+        meta: { title: "新闻" },
+        children: [
+            {
+                path: "newstype",
+                name: "NewsType",
+                component: () => import('@/views/news/newsType/index'),
+                meta: {
+                    title: "新闻类型",
+                    // icon: "dashboard"
+                }
+            },
+            {
+                path: "newslist",
+                name: "NewsList",
+                component: () => import('@/views/news/newsList/index'),
+                meta: {
+                    title: "新闻列表",
+                    // icon: "dashboard"
+                }
+            },
+            {
+                path: "newsupload",
+                name: "NewsUpload",
+                component: () => import('@/views/news/newsUpload/index'),
+                meta: {
+                    title: "新闻上传",
+                    // icon: "dashboard"
+                }
+            },
+        ]
+    },
+    // 图片模块
+    {
+        path: "/",
+        component: Layout,
+        redirect: "/images",
+        children: [{
+            path: "images",
+            name: "Images",
+            component: () => import('@/views/images/index'),
+            meta: {
+                title: "图片",
+                // icon: "dashboard"
+            }
+        }]
+    },
+
+
     {
         path: '/example',
         component: Layout,

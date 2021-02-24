@@ -37,3 +37,13 @@
     <!--  -->
     npm install js-cookie --save
 ```
+
+> 安装 mockjs
+
+```
+    <!-- 安装 -->
+    npm install mockjs --save-dev
+
+```
+
+**学习 fastmock**
